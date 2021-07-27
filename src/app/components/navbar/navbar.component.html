@@ -9,20 +9,20 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" routerLink="/" >Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" routerLinkActive="active" routerLink="/cart">Cart</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" routerLinkActive="active" routerLink="/admin">Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/signup">signup</a>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLinkActive="active" routerLink="/signup">Signup</a>
         </li>
-        <li class="nav-item">
-          <a class="btn btn-danger" routerLinkActive="active" routerLink="/signup">Logout</a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="btn btn-danger" routerLinkActive="active" routerLink="/signup" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
