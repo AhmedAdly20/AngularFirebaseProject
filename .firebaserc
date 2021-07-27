@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-market-7ea52": {
+      "hosting": {
+        "myApp": [
+          "angular-market-7ea52"
+        ]
+      }
+    }
+  }
+}

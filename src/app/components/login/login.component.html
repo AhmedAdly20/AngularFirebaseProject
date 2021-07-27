@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="body">
+    <div class="text-center">Login</div>
+    <form #f="ngForm" class="mt-2 align-content-center align-items-center" (ngSubmit)="login(f)">
+      <input
+        ngModel
+        name="email"
+        #email="ngModel"
+        type="email"
+        class="form-control mt-3"
+        placeholder="Enter Your E-Mail"
+        required
+        email
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="email.errors?.required && email.touched"
+      >
+        Email Is Required
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="email.errors?.email && email.touched"
+      >
+        Email Is Invalid
+      </div>
+      <input
+        ngModel
+        name="password"
+        #password="ngModel"
+        type="password"
+        class="form-control mt-3"
+        placeholder="Enter Your Password"
+        required
+        minlength="6"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="password.errors?.required && password.touched"
+      >
+        Password Is Required
+      </div>
+      <button
+        type="submit"
+        [disabled]="f.invalid"
+        class="btn btn-primary mt-3"
+      >
+        Create Account
+      </button>
+    </form>
+  </div>
+</div>
