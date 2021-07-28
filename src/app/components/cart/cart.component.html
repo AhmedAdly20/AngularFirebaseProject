@@ -20,8 +20,8 @@
           {{ item.price * item.amount | currency }}
         </td>
         <td>
-          <button class="btn btn-primary" (click)="save(i)">Buy</button>
-          <button class="btn btn-danger ms-2" (click)="delete(i)">Save</button>
+          <button class="btn btn-primary" (click)="save(i)">Save</button>
+          <button class="btn btn-danger ms-2" (click)="delete(i)">Delete</button>
         </td>
       </tr>
       <tr *ngIf="cartItems && totalPrice">

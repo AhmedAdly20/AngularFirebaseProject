@@ -16,9 +16,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this._cartService.getCart().subscribe((cartItems) => {
       this.cartItems = cartItems.map((cartItem) => {
-        this.totalPrice +=
-          cartItem.payload.doc.data()['price'] *
-          cartItem.payload.doc.data()['amount'];
         return {
           id: cartItem.payload.doc.id,
           ...(cartItem.payload.doc.data() as CartItem),
