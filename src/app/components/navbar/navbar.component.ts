@@ -18,7 +18,10 @@ export class NavbarComponent implements OnInit {
         this.isLoggedIn = true;
         this._authService.userId = user.uid;
       }
-      else this.isLoggedIn = false;
+      else {
+        this.isLoggedIn = false;
+        this._authService.userId = '';
+      }
     });
   }
 

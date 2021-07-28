@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -33,18 +34,19 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDR1eMplT7zg32shZXPa9ll25BfAXt6d2U",
-      authDomain: "angular-market-7ea52.firebaseapp.com",
-      projectId: "angular-market-7ea52",
-      storageBucket: "angular-market-7ea52.appspot.com",
-      messagingSenderId: "362517618507",
-      appId: "1:362517618507:web:28fe9886d4e526fb91d2ce",
-      measurementId: "G-1E5N750GB0"
+      apiKey: 'AIzaSyDR1eMplT7zg32shZXPa9ll25BfAXt6d2U',
+      authDomain: 'angular-market-7ea52.firebaseapp.com',
+      projectId: 'angular-market-7ea52',
+      storageBucket: 'angular-market-7ea52.appspot.com',
+      messagingSenderId: '362517618507',
+      appId: '1:362517618507:web:28fe9886d4e526fb91d2ce',
+      measurementId: 'G-1E5N750GB0',
     }),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
