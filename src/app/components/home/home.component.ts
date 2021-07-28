@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { CartService } from './../../services/cart.service';
 import { GoodsService } from './../../services/goods.service';
 import { Good } from './../../models/Good.interface';
@@ -7,48 +9,51 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   goods: Good[];
   goodsObservable: Subscription;
-  add: number = -1
+  add: number = -1;
 
-  constructor(private _goodsService: GoodsService, private _cartService: CartService) { }
+  constructor(
+    private _goodsService: GoodsService,
+    private _cartService: CartService,
+    private _authService: AuthService,
+    private _router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.goodsObservable = this._goodsService.getAllGoods().subscribe(goods => {
-      this.goods = goods.map(good => {
-        return {
-          id: good.payload.doc.id,
-          ...good.payload.doc.data() as Good,
-          // name: good.payload.doc.data()['name'],
-          // price: good.payload.doc.data()['price'],
-          // photoUrl: good.payload.doc.data()['photoUrl'],
-        }
+    this.goodsObservable = this._goodsService
+      .getAllGoods()
+      .subscribe((goods) => {
+        this.goods = goods.map((good) => {
+          return {
+            id: good.payload.doc.id,
+            ...(good.payload.doc.data() as Good),
+            // name: good.payload.doc.data()['name'],
+            // price: good.payload.doc.data()['price'],
+            // photoUrl: good.payload.doc.data()['photoUrl'],
+          };
+        });
       });
-    });
   }
 
-
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.goodsObservable.unsubscribe;
   }
 
-
-  addToCart(index: number){
-    this.add = +index;
+  addToCart(index: number) {
+    this._authService.userId ? this.add = +index : this._router.navigate(['login']);
   }
 
-
-  buy(amount: number){
+  buy(amount: number) {
     let selectedGood = this.goods[this.add];
     let data = {
       name: selectedGood.name,
       amount: +amount,
-      price: selectedGood.price
+      price: selectedGood.price,
     };
-    this._cartService.addToCart(data).then(() => this.add = -1);
+    this._cartService.addToCart(data).then(() => (this.add = -1));
   }
-
 }
